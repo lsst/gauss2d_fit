@@ -55,7 +55,7 @@ pymod = import('python')
 python = pymod.find_installation(
     'python3',
     required : true,
-    modules: ['lsst.gauss2d', 'pytest'],
+    modules: ['pytest'],
 )
 subdir('src')
 
@@ -89,4 +89,3 @@ test('pytest', python, args : ['-m', 'pytest', 'tests'], workdir : meson.project
 
 # Build package docs (optional)
 subdir('doc')
-
