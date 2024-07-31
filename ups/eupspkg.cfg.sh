@@ -22,6 +22,8 @@ clean()
 
 config_cc()
 {
+    export CXXFLAGS="$CXXFLAGS -ffp-contract=off"
+    
     ([ -d "$GAUSS2D_FIT_DIR" ] && ./clean-cc.sh && meson setup --prefix="$GAUSS2D_FIT_DIR/build-release" \
      --buildtype release --libdir "lib" build-release)
 }
