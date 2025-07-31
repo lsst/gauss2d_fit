@@ -38,7 +38,7 @@ using namespace pybind11::literals;
 namespace g2f = lsst::gauss2d::fit;
 
 void bind_linearintegralmodel(py::module &m) {
-    auto _p = py::class_<g2f::LinearIntegralModel, std::shared_ptr<g2f::LinearIntegralModel>,
+    auto _p = py::classh<g2f::LinearIntegralModel,
                          g2f::IntegralModel>(m, "LinearIntegralModel")
                       .def(py::init<const g2f::LinearIntegralModel::Data *>(), "data"_a)
                       .def_property_readonly("channels", &g2f::LinearIntegralModel::get_channels)

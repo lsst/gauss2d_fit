@@ -39,7 +39,7 @@ using namespace pybind11::literals;
 namespace g2f = lsst::gauss2d::fit;
 
 void bind_gaussianmodelintegral(py::module &m) {
-    auto _p = py::class_<g2f::GaussianModelIntegral, std::shared_ptr<g2f::GaussianModelIntegral>,
+    auto _p = py::classh<g2f::GaussianModelIntegral,
                          lsst::gauss2d::GaussianIntegral>(m, "GaussianModelIntegral")
                       .def(py::init<const g2f::Channel &, const std::shared_ptr<const g2f::IntegralModel>>(),
                            "channel"_a, "integralmodel"_a)

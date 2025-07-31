@@ -35,5 +35,5 @@ using namespace pybind11::literals;
 namespace g2f = lsst::gauss2d::fit;
 
 void bind_chromatic(py::module &m) {
-    auto _p = py::class_<g2f::Chromatic, std::shared_ptr<g2f::Chromatic>>(m, "Chromatic");
+    auto _p = py::classh<g2f::Chromatic>(m, "Chromatic");
 }

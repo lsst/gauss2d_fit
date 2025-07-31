@@ -35,6 +35,6 @@ using namespace pybind11::literals;
 namespace g2f = lsst::gauss2d::fit;
 
 void bind_integralmodel(py::module &m) {
-    auto _p = py::class_<g2f::IntegralModel, std::shared_ptr<g2f::IntegralModel>, g2f::Chromatic>(
+    auto _p = py::classh<g2f::IntegralModel, g2f::Chromatic>(
             m, "IntegralModel");
 }

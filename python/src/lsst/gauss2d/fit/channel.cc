@@ -37,7 +37,7 @@ using namespace pybind11::literals;
 namespace g2f = lsst::gauss2d::fit;
 
 void bind_channel(py::module &m) {
-    auto _c = py::class_<g2f::Channel, std::shared_ptr<g2f::Channel> >(m, "Channel")
+    auto _c = py::classh<g2f::Channel>(m, "Channel")
                       .def(py::init(&g2f::Channel::make))
                       .def_static("erase", &g2f::Channel::erase)
                       .def_property_readonly_static("all",

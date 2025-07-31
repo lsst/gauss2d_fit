@@ -50,7 +50,7 @@ template <typename T>
 void declare_limits(py::module &m) {
     using Class = parameters::Limits<T>;
     std::string pyclass_name = std::string("Limits") + g2f::suffix_type_str<T>();
-    py::class_<Class, std::shared_ptr<Class>>(m, pyclass_name.c_str())
+    py::classh<Class>(m, pyclass_name.c_str())
             .def(py::init<T, T, const std::string>(), "min"_a = -std::numeric_limits<T>::infinity(),
                  "max"_a = std::numeric_limits<T>::infinity(), "name"_a = "")
             .def("check", &Class::check)
@@ -115,7 +115,7 @@ auto declare_parameter(py::module &m, std::string name, std::string suffix = g2f
     using Base = parameters::ParameterBase<T>;
     using Class = parameters::Parameter<T, C>;
     return declare_parameter_methods<Class, C, std::shared_ptr<C>, Base>(
-            py::class_<C, std::shared_ptr<C>, Base, Bases...>(m, (name + "Parameter" + suffix).c_str())
+            py::classh<C, Base, Bases...>(m, (name + "Parameter" + suffix).c_str())
                     .def(py::init<T, std::shared_ptr<const parameters::Limits<T>>,
                                   std::shared_ptr<const parameters::Transform<T>>,
                                   std::shared_ptr<const parameters::Unit>, bool, std::string>(),
@@ -131,20 +131,20 @@ auto declare_sizeparameter(py::module &m, std::string name) {
 
 template <typename T, class ClassX, class ClassY>
 auto declare_sizeparameter_base(py::module &m, std::string suffix = g2f::suffix_type_str<T>()) {
-    py::class_<ClassX, std::shared_ptr<ClassX>>(m, ("SizeXParameter" + suffix).c_str());
-    py::class_<ClassY, std::shared_ptr<ClassY>>(m, ("SizeYParameter" + suffix).c_str());
+    py::classh<ClassX>(m, ("SizeXParameter" + suffix).c_str());
+    py::classh<ClassY>(m, ("SizeYParameter" + suffix).c_str());
 }
 
 template <typename T>
 void declare_transform_base(py::module &m) {
     using Class = parameters::Transform<T>;
-    py::class_<Class, std::shared_ptr<Class>>(m, "TransformD");
+    py::classh<Class>(m, "TransformD");
 }
 
 template <typename T, class C, bool has_factor, bool has_limits, typename... Arguments>
 void declare_transform_full(py::module &m, std::string name) {
     using Class = C;
-    auto x = py::class_<Class, std::shared_ptr<Class>, parameters::Transform<T>>(
+    auto x = py::classh<Class, parameters::Transform<T>>(
                      m, (name + "TransformD").c_str())
                      .def("description", &Class::description)
                      .def("derivative", &Class::derivative)

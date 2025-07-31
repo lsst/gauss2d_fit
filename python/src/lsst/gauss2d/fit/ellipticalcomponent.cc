@@ -39,7 +39,7 @@ using namespace pybind11::literals;
 namespace g2f = lsst::gauss2d::fit;
 
 void bind_ellipticalcomponent(py::module &m) {
-    auto _e = py::class_<g2f::EllipticalComponent, std::shared_ptr<g2f::EllipticalComponent>, g2f::Component>(
+    auto _e = py::classh<g2f::EllipticalComponent, g2f::Component>(
                       m, "EllipticalComponent")
                       .def_property_readonly("centroid", &g2f::EllipticalComponent::get_centroid)
                       .def_property_readonly("ellipse", &g2f::EllipticalComponent::get_ellipse)

@@ -50,7 +50,7 @@ void bind_sersicmixcomponent(py::module &m) {
     declare_parameter_methods<C, C, std::shared_ptr<C>, Base>(
             // note that Base is the actual name of the base Parameter class, not the CRTP class
             // that it is "derived" from
-            py::class_<C, std::shared_ptr<C>, Base>(m, pyclass_name.c_str()))
+            py::classh<C, Base>(m, pyclass_name.c_str()))
             // new properties
             .def_property_readonly("integralratio",
                                    &g2f::SersicMixComponentIndexParameterD::get_integralratio)
@@ -66,7 +66,7 @@ void bind_sersicmixcomponent(py::module &m) {
                  "transform"_a = nullptr, "unit"_a = lsst::gauss2d::fit::unit_none, "fixed"_a = false,
                  "label"_a = "", "interpolator"_a = nullptr);
 
-    auto _e = py::class_<g2f::SersicMixComponent, std::shared_ptr<g2f::SersicMixComponent>,
+    auto _e = py::classh<g2f::SersicMixComponent,
                          g2f::EllipticalComponent>(m, "SersicMixComponent")
                       .def(py::init<std::shared_ptr<g2f::SersicParametricEllipse>,
                                     std::shared_ptr<g2f::CentroidParameters>,
