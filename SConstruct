@@ -1,3 +1,3 @@
 # -*- python -*-
 from lsst.sconsUtils import scripts
-scripts.BasicSConstruct("gauss2d_fit", versionModuleName=None)
+scripts.BasicSConstruct("gauss2d_fit", versionModuleName=None, noCfgFile=True)
